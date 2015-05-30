@@ -1,15 +1,21 @@
+# Overview
 
-* Building
+## Building
+
 Instructions for installing with a fresh trusty64 instance
 
-Download latest [zookeeper](https://zookeeper.apache.org/)
+1.Download latest [zookeeper](https://zookeeper.apache.org/)
+2.Install ant and open openjdk-7-jdk
 
-* Follow installation instructions from Zookeeper C Binding     https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
-
+```
 sudo apt-get install ant
 sudo apt-get install openjdk-7-jdk
-ant compile_jute
+```
 
+3. Follow instructions for installing the Zookeeper C Bindings. https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
+
+```
+ant compile_jute
 cd src/c
 sudo apt-get install autoconf
 sudo apt-get install libcppunit-dev
@@ -17,6 +23,7 @@ sudo apt-get install libtool
 autoreconf -if
 ./configure
 make; make install
+```
 
 This will install the zookeeper libs into /usr/local/lib
 
