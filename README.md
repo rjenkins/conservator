@@ -12,7 +12,7 @@ sudo apt-get install ant
 sudo apt-get install openjdk-7-jdk
 ```
 
-* Follow instructions for installing the Zookeeper C Bindings. https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
+Follow instructions for installing the Zookeeper C Bindings. https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
 
 ```
 ant compile_jute
@@ -24,9 +24,8 @@ autoreconf -if
 ./configure
 make; make install
 ```
-
-This will install the zookeeper libs into /usr/local/lib
-
+This will install the zookeeper libraries into /usr/local/lib
+```
 vagrant@vagrant-ubuntu-trusty-64:~/zookeeper-3.4.6/src/c$ ls /usr/local/lib/ | grep zoo
 libzookeeper_mt.a
 libzookeeper_mt.la
@@ -38,9 +37,11 @@ libzookeeper_st.la
 libzookeeper_st.so
 libzookeeper_st.so.2
 libzookeeper_st.so.2.0.0
-
+```
+* Install libcheck
+```
 sudo apt-get install check
+```
 
-sudo apt-get install libzookeeper-mt2
-sudo apt-get install libzookeeper-mt-dev
+
 
