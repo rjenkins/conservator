@@ -86,3 +86,15 @@ Test project /home/rjenkins/conservator
 
 Total Test time (real) =   5.19 sec
 ```
+
+Usage and API
+
+To use simply link to the static ```libconservator-framework.a```. 
+
+* First you need to create an ConservatorFramework instance by using the ConservatorFrameworkFactory.
+
+```
+ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+ConservatorFramework framework = factory.newClient("localhost:2181");
+framework.start();
+```
