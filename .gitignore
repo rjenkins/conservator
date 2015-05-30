@@ -4,4 +4,3 @@ CMakeCache.txt
 Makefile
 Testing/*
 cmake_install.cmake
-build/*
