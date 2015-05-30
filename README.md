@@ -51,7 +51,25 @@ sudo apt-get install check
 To build simply cd into conservator run cmake . and make
 ```
 cmake .
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/rjenkins/conservator
 make
+[  9%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/ConservatorFramework.cpp.o
+[ 18%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/ConservatorFrameworkFactory.cpp.o
+[ 27%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/GetDataBuilderImpl.cpp.o
+[ 36%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/ExistsBuilderImpl.cpp.o
+[ 45%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/CreateBuilderImpl.cpp.o
+[ 54%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/DeleteBuilderImpl.cpp.o
+[ 63%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/SetDataBuilderImpl.cpp.o
+[ 72%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/GetChildrenBuilderImpl.cpp.o
+[ 81%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/GetACLBuilderImpl.cpp.o
+[ 90%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/SetACLBuilderImpl.cpp.o
+Linking CXX static library build/libconservator-framework.a
+[ 90%] Built target conservator-framework
+[100%] Building CXX object conservator-framework/tests/CMakeFiles/ConservatorFrameworkFactoryTest.dir/ConservatorFrameworkFactoryTest.cpp.o
+Linking CXX executable ../../build/ConservatorFrameworkFactoryTest
+[100%] Built target ConservatorFrameworkFactoryTest
 ```
 
 
