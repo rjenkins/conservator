@@ -48,13 +48,13 @@ sudo apt-get install check
 
 ## Building
 
-To build simply cd into conservator run cmake . and make
+To build simply cd into conservator run cmake . and make and libconservator-framework.a will be installed in the build directory.
 ```
-cmake .
+rjenkins@rjenkins-VirtualBox:~/conservator$ cmake .
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/rjenkins/conservator
-make
+rjenkins@rjenkins-VirtualBox:~/conservator$ make
 [  9%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/ConservatorFramework.cpp.o
 [ 18%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/ConservatorFrameworkFactory.cpp.o
 [ 27%] Building CXX object CMakeFiles/conservator-framework.dir/conservator-framework/src/GetDataBuilderImpl.cpp.o
@@ -72,5 +72,17 @@ Linking CXX executable ../../build/ConservatorFrameworkFactoryTest
 [100%] Built target ConservatorFrameworkFactoryTest
 ```
 
+## Testing
 
+In order to run unit tests run make test.
+```
+rjenkins@rjenkins-VirtualBox:~/conservator$ make test
+Running tests...
+Test project /home/rjenkins/conservator
+    Start 1: ConservatorFrameworkFactoryTest
+1/1 Test #1: ConservatorFrameworkFactoryTest ...   Passed    5.19 sec
 
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   5.19 sec
+```
