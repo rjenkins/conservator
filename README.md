@@ -5,7 +5,7 @@
 Instructions for installing with a fresh trusty64 instance
 
 * Download latest [zookeeper](https://zookeeper.apache.org/)
-* Install ant and open openjdk-7-jdk
+* Install [ant](http://ant.apache.org/) and [openjdk-7-jdk](http://openjdk.java.net/)
 
 ```
 sudo apt-get install ant
