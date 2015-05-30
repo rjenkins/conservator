@@ -1,6 +1,6 @@
 # Overview
 
-Conservator is a Zookeeper Client library written in C++. It's not a direct port of [Apache Curator](http://curator.apache.org/) but  tries to match the simplicity and fluent nature of Curator's API.  
+Conservator is a Zookeeper Client library written in C++. It's not a direct port of [Apache Curator](http://curator.apache.org/) but tries to mirror the simplicity and fluent nature of the [CuratorFramework](http://curator.apache.org/apidocs/) API.  
 
 ## Building
 
