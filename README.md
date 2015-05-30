@@ -1,8 +1,10 @@
-Instructions for installing with a fresh trusty64 vagrant instance
 
-Download latest zookeeper from http://www.apache.org/dyn/closer.cgi/zookeeper/
+* Building
+Instructions for installing with a fresh trusty64 instance
 
-follow installation instructions from Zookeeper C Binding https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
+Download latest [zookeeper](https://zookeeper.apache.org/)
+
+* Follow installation instructions from Zookeeper C Binding     https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
 
 sudo apt-get install ant
 sudo apt-get install openjdk-7-jdk
