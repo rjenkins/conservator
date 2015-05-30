@@ -91,7 +91,7 @@ Total Test time (real) =   5.19 sec
 
 To use simply link to the static ```libconservator-framework.a```. 
 
-First you need to create an ConservatorFramework instance by using the ConservatorFrameworkFactory.
+You can obtain a ConservatorFramework instance by using the ConservatorFrameworkFactory.
 
 ```
 ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
