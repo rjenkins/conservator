@@ -38,7 +38,7 @@ libzookeeper_st.so
 libzookeeper_st.so.2
 libzookeeper_st.so.2.0.0
 ```
-* Install libcheck
+* Install [libcheck](http://check.sourceforge.net/)
 ```
 sudo apt-get install check
 ```
