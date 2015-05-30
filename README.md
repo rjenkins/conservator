@@ -4,15 +4,15 @@
 
 Instructions for installing with a fresh trusty64 instance
 
-1. Download latest [zookeeper](https://zookeeper.apache.org/)
-2. Install ant and open openjdk-7-jdk
+* Download latest [zookeeper](https://zookeeper.apache.org/)
+* Install ant and open openjdk-7-jdk
 
 ```
 sudo apt-get install ant
 sudo apt-get install openjdk-7-jdk
 ```
 
-3. Follow instructions for installing the Zookeeper C Bindings. https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
+* Follow instructions for installing the Zookeeper C Bindings. https://zookeeper.apache.org/doc/r3.4.6/zookeeperProgrammers.html#C+Binding
 
 ```
 ant compile_jute
