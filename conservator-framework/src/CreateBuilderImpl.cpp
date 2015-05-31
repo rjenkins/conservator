@@ -13,6 +13,12 @@ int CreateBuilderImpl::forPath(string path) {
     return this->forPath(path, NULL);
 }
 
+PathableAndWriteable<int> *CreateBuilderImpl::withFlags(int flags) {
+    this->flags = flags;
+    return (PathableAndWriteable<int> *) this;
+
+}
+
 int CreateBuilderImpl::forPath(string path, char *data) {
     char buffer[512];
     int length;
@@ -21,5 +27,5 @@ int CreateBuilderImpl::forPath(string path, char *data) {
     } else {
         length = char_traits<char>::length(data);
     }
-    return zoo_create(this->zk, path.c_str(), data, length, &ZOO_OPEN_ACL_UNSAFE, 0, buffer, sizeof(buffer) - 1);
+    return zoo_create(this->zk, path.c_str(), data, length, &ZOO_OPEN_ACL_UNSAFE, flags, buffer, sizeof(buffer) - 1);
 }

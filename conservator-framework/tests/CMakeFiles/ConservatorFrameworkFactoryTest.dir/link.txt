@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11   CMakeFiles/ConservatorFrameworkFactoryTest.dir/ConservatorFrameworkFactoryTest.cpp.o  -o ../../build/ConservatorFrameworkFactoryTest -rdynamic ../../build/libconservator-framework.a -Wl,-Bstatic -lzookeeper_mt -lcheck -lrt -Wl,-Bdynamic -lpthread 
