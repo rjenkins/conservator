@@ -114,7 +114,7 @@ unique_ptr<GetACLBuilder<int>> getACL(ACL_vector *vector);
 unique_ptr<SetACLBuilder<int>> setACL(ACL_vector *vector);
 ```
 
-The units tests contained with [ConservatorFrameworkFactoryTest](https://github.com/rjenkins/conservator/blob/master/conservator-framework/tests/ConservatorFrameworkFactoryTest.cpp) are comprehensive and prvoide example of how to use the entire API, including...
+Below are some example of how to use the entire API, if you don't see your use case here be sure to read the unit tests contained with [ConservatorFrameworkFactoryTest](https://github.com/rjenkins/conservator/blob/master/conservator-framework/tests/ConservatorFrameworkFactoryTest.cpp) they are comprehensive and prvoide example of how to use the entire API.
 
 * Creating a znode
 ```c
