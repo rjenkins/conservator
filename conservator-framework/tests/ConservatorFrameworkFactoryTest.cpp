@@ -66,6 +66,17 @@ START_TEST(framework_create) {
 }
 END_TEST
 
+START_TEST(framework_create_ephemeral) {
+    ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+    ConservatorFramework framework = factory.newClient("localhost:2181");
+    framework.start();
+    ck_assert_int_eq(ZOK, framework.create()->withFlags(ZOO_EPHEMERAL)->forPath("/foo"));
+    framework.close();
+    framework.start();
+    ck_assert_int_eq(ZNONODE, framework.checkExists()->forPath("/foo"));
+}
+END_TEST
+
 START_TEST(framework_exists) {
     ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
     ConservatorFramework framework = factory.newClient("localhost:2181");
@@ -290,6 +301,7 @@ Suite * framework_suite(void) {
     tcase_add_test(tc_core, framework_started);
     tcase_add_test(tc_core, framework_closed);
     tcase_add_test(tc_core, framework_create);
+    tcase_add_test(tc_core, framework_create_ephemeral);
     tcase_add_test(tc_core, framework_exists);
     tcase_add_test(tc_core, framework_exists_with_watch);
     tcase_add_test(tc_core, framework_delete);
