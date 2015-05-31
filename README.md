@@ -246,3 +246,9 @@ START_TEST(framework_getchildren)
 }
 END_TEST
 ```
+## TODO
+
+* Add support for the zookeeper.h zoo_a* asynchronous calls
+* Add support for the zoo_*2 calls that allow for setting Stat structs.
+* Add support for blocking on connect for framework.start()
+* Better error detection and recovery handling.
