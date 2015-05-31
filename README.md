@@ -142,7 +142,7 @@ ck_assert_int_eq(ZOK, framework.checkExists()->forPath("/foo"));
 ```
 
 * Getting the contents of a znode 
-```
+```c
 ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
 ConservatorFramework framework = factory.newClient("localhost:2181");
 framework.start();
@@ -151,7 +151,7 @@ ck_assert_str_eq("bar", framework.getData()->forPath("/foo").c_str());
 ```
 
 * Getting a znode and setting a watch
-```
+```c
 void get_watcher_fn(zhandle_t *zh, int type,
                        int state, const char *path,void *watcherCtx) {
     cout << "get watcher function called" << endl;
@@ -172,6 +172,31 @@ START_TEST(framework_getdata_with_watch) {
     ck_assert_str_eq("bar", r.c_str());
     framework.setData()->forPath("/foo", (char *) "bar");
     ck_assert_int_eq(1, get_watcher_called);
+}
+END_TEST
+```
+
+* Setting a znode and setting a znode while checking for version modifications
+```c
+START_TEST(framework_setdata) {
+    ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+    ConservatorFramework framework = factory.newClient("localhost:2181");
+    framework.start();
+    framework.create()->forPath("/foo", (char *) "bar");
+    ck_assert_int_eq(ZOK, framework.setData()->forPath("/foo", (char *) "moo"));
+    ck_assert_str_eq("moo", framework.get("/foo").c_str());
+}
+END_TEST
+
+START_TEST(framework_setdata_version) {
+    ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+    ConservatorFramework framework = factory.newClient("localhost:2181");
+    framework.start();
+    framework.create()->forPath("/foo");
+    struct Stat stat;
+    framework.getData()->storingStatIn(&stat)->forPath("/foo");
+    ck_assert_int_eq(ZBADVERSION, framework.setData()->withVersion(100)->forPath("/foo", (char *) "bar"));
+    ck_assert_int_eq(ZOK, framework.setData()->withVersion(stat.version)->forPath("/foo", (char *) "bar"));
 }
 END_TEST
 ```
