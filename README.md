@@ -98,3 +98,16 @@ ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
 ConservatorFramework framework = factory.newClient("localhost:2181");
 framework.start();
 ```
+
+Once you've obtained a ConservatorFramework instance all of the standard zookeeper related operations are availble from this interface, with optional parameters being added with additional fluent calls.
+
+```c++
+    unique_ptr<GetDataBuilder<string>> getData();
+    unique_ptr<ExistsBuilder<int>> checkExists();
+    unique_ptr<CreateBuilder<int>> create();
+    unique_ptr<DeleteBuilder<int>> deleteNode();
+    unique_ptr<SetDataBuilder<int>> setData();
+    unique_ptr<GetChildrenBuilder<string>> getChildren();
+    unique_ptr<GetACLBuilder<int>> getACL(ACL_vector *vector);
+    unique_ptr<SetACLBuilder<int>> setACL(ACL_vector *vector);
+```
