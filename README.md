@@ -116,10 +116,18 @@ unique_ptr<SetACLBuilder<int>> setACL(ACL_vector *vector);
 
 The units tests contained with [ConservatorFrameworkFactoryTest](https://github.com/rjenkins/conservator/blob/master/conservator-framework/tests/ConservatorFrameworkFactoryTest.cpp) are comprehensive and prvoide example of how to use the entire API, including...
 
-### Creating a znode
+* Creating a znode
 ```c
  ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
  ConservatorFramework framework = factory.newClient("localhost:2181");
  framework.start();
  int result = framework.create()->forPath("/foo", (char *) "bar");
+```
+
+* Creating an ephemeral znode
+```c
+ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+ConservatorFramework framework = factory.newClient("localhost:2181");
+framework.start();
+ck_assert_int_eq(ZOK, framework.create()->withFlags(ZOO_EPHEMERAL)->forPath("/foo"));
 ```
