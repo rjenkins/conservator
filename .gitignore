@@ -5,5 +5,5 @@ Makefile
 Testing/*
 cmake_install.cmake
 build/*
-conservator-framework/tests/CMakeFiles/ConservatorFrameworkFactoryTest.dir/*
+conservator-framework/tests/CMakeFiles/*
 .idea
