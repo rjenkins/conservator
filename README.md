@@ -131,3 +131,21 @@ ConservatorFramework framework = factory.newClient("localhost:2181");
 framework.start();
 ck_assert_int_eq(ZOK, framework.create()->withFlags(ZOO_EPHEMERAL)->forPath("/foo"));
 ```
+
+* Checking for the existance of a znode
+```c
+ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+ConservatorFramework framework = factory.newClient("localhost:2181");
+framework.start();
+framework.create()->forPath("/foo");
+ck_assert_int_eq(ZOK, framework.checkExists()->forPath("/foo"));
+```
+
+* Getting the contents of a znode 
+```
+ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+ConservatorFramework framework = factory.newClient("localhost:2181");
+framework.start();
+framework.create()->forPath("/foo", (char *) "bar");
+ck_assert_str_eq("bar", framework.getData()->forPath("/foo").c_str());
+```
