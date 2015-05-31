@@ -200,3 +200,49 @@ START_TEST(framework_setdata_version) {
 }
 END_TEST
 ```
+* Deleting a znode or deleting a znode and all it's children.
+```c
+START_TEST(framework_getdata) {
+    ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+    ConservatorFramework framework = factory.newClient("localhost:2181");
+    framework.start();
+    framework.create()->forPath("/foo", (char *) "bar");
+    ck_assert_str_eq("bar", framework.getData()->forPath("/foo").c_str());
+}
+END_TEST
+
+START_TEST(framework_delete_children) {
+    ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+    ConservatorFramework framework = factory.newClient("localhost:2181");
+    framework.start();
+    framework.create()->forPath("/flintstones");
+    framework.create()->forPath("/flintstones/fred");
+    framework.create()->forPath("/flintstones/barney");
+    vector<string> children = framework.getChildren()->forPath("/flintstones");
+    ck_assert_int_eq(2, children.size());
+    ck_assert_str_eq("barney", children.at(0).c_str());
+    ck_assert_str_eq("fred", children.at(1).c_str());
+    framework.deleteNode()->deletingChildren()->forPath("/flintstones");
+    ck_assert_int_eq(ZNONODE, framework.checkExists()->forPath("/flintstones"));
+
+}
+END_TEST
+```
+
+* Getting a znode's children
+```c
+START_TEST(framework_getchildren)
+{
+    ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+    ConservatorFramework framework = factory.newClient("localhost:2181");
+    framework.start();
+    framework.create()->forPath("/flintstones");
+    framework.create()->forPath("/flintstones/fred");
+    framework.create()->forPath("/flintstones/barney");
+    vector<string> children = framework.getChildren()->forPath("/flintstones");
+    ck_assert_int_eq(2, children.size());
+    ck_assert_str_eq("barney", children.at(0).c_str());
+    ck_assert_str_eq("fred", children.at(1).c_str());
+}
+END_TEST
+```
