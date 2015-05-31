@@ -149,3 +149,29 @@ framework.start();
 framework.create()->forPath("/foo", (char *) "bar");
 ck_assert_str_eq("bar", framework.getData()->forPath("/foo").c_str());
 ```
+
+* Getting a znode and setting a watch
+```
+void get_watcher_fn(zhandle_t *zh, int type,
+                       int state, const char *path,void *watcherCtx) {
+    cout << "get watcher function called" << endl;
+    get_watcher_called++;
+    // reset the watch
+    ConservatorFramework* framework = (ConservatorFramework *) watcherCtx;
+    if(framework->checkExists()->forPath(path)) {
+        framework->getData()->withWatcher(get_watcher_fn, framework)->forPath(path);
+    }
+}
+
+START_TEST(framework_getdata_with_watch) {
+    ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
+    ConservatorFramework framework = factory.newClient("localhost:2181");
+    framework.start();
+    framework.create()->forPath("/foo", (char *) "bar");
+    string r = framework.getData()->withWatcher(get_watcher_fn, ((void *) &framework))->forPath("/foo");
+    ck_assert_str_eq("bar", r.c_str());
+    framework.setData()->forPath("/foo", (char *) "bar");
+    ck_assert_int_eq(1, get_watcher_called);
+}
+END_TEST
+```
