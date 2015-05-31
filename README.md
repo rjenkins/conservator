@@ -89,7 +89,7 @@ Total Test time (real) =   5.19 sec
 
 ## Usage and API
 
-To use simply link to the static ```libconservator-framework.a```. 
+To use simply link to the static ```libconservator-framework.a``` library. 
 
 You can obtain a ConservatorFramework instance by using the ConservatorFrameworkFactory.
 
@@ -98,6 +98,8 @@ ConservatorFrameworkFactory factory = ConservatorFrameworkFactory();
 ConservatorFramework framework = factory.newClient("localhost:2181");
 framework.start();
 ```
+
+Make sure to close the framework when you're done with the ```framework.close()``` command.
 
 Once you've obtained a ConservatorFramework instance all of the standard zookeeper related operations are availble from this interface, with optional parameters being added with additional fluent calls.
 
@@ -111,3 +113,5 @@ unique_ptr<GetChildrenBuilder<string>> getChildren();
 unique_ptr<GetACLBuilder<int>> getACL(ACL_vector *vector);
 unique_ptr<SetACLBuilder<int>> setACL(ACL_vector *vector);
 ```
+
+The units tests contained with (ConservatorFrameworkFactoryTest)[https://github.com/rjenkins/conservator/blob/master/conservator-framework/tests/ConservatorFrameworkFactoryTest.cpp] are comprehensive and include example of how to use the entire API.
