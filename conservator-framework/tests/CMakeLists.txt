@@ -3,4 +3,4 @@ include_directories(.)
 
 add_executable(ConservatorFrameworkFactoryTest ConservatorFrameworkFactoryTest.cpp)
 add_test(ConservatorFrameworkFactoryTest ${CMAKE_BINARY_DIR}/ConservatorFrameworkFactoryTest)
-target_link_libraries(ConservatorFrameworkFactoryTest ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libconservator-framework.a libzookeeper_mt.a libcheck.a librt.a ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ConservatorFrameworkFactoryTest conservator-framework ${ZOOKEEPER_LIBRARY} ${CHECK_LDFLAGS} ${CHECK_CFLAGS})
