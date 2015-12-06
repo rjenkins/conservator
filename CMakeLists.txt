@@ -45,3 +45,7 @@ add_library(conservator-framework SHARED
 add_subdirectory(conservator-framework/tests)
 
 install(TARGETS conservator-framework DESTINATION lib)
+
+# Do we need all headers?
+install(DIRECTORY conservator-framework/src/ DESTINATION include/conservator
+  FILES_MATCHING PATTERN "*h")
