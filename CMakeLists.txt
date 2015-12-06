@@ -1,22 +1,23 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 2.8)
 project(conservator)
 
-enable_testing()
-
-set(ZooKeeper_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-set(Check_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
 set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-set(INCLUDE_DIRECTORIES /usr/local/include/zookeeper)
 
-find_package (Threads REQUIRED)
-find_package(ZooKeeper REQUIRED)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
+
+find_package(Threads REQUIRED)
+find_package(Zookeeper REQUIRED)
 find_package(Check REQUIRED)
+
+enable_testing()
+
 include_directories(${CHECK_INCLUDE_DIRS})
-include_directories(/usr/local/include/zookeeper)
+include_directories(${ZOOKEEPER_INCLUDE_DIR}/zookeeper)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_library(conservator-framework STATIC conservator-framework/src/ConservatorFramework.cpp
 conservator-framework/src/ConservatorFrameworkFactory.cpp
