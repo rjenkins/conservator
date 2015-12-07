@@ -9,6 +9,8 @@
 #include <zookeeper.h>
 #include <memory>
 #include <vector>
+#include <mutex>
+#include <condition_variable>
 #include "GetDataBuilder.h"
 #include "GetDataBuilderImpl.h"
 #include "ExistsBuilder.h"

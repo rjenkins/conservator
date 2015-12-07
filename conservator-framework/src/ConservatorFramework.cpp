@@ -8,8 +8,19 @@
 #include "GetACLBuilderImpl.h"
 #include "SetACLBuilderImpl.h"
 
+bool connected = false;
+mutex connectMutex;
+condition_variable connectCondition;
+
 void watcher(zhandle_t *zzh, int type, int state, const char *path,
              void *watcherCtx) {
+
+    if(state == ZOO_CONNECTED_STATE) {
+        unique_lock<std::mutex> connectLock(connectMutex);
+        connected = true;
+        connectCondition.notify_all();
+        connectLock.unlock();
+    }
 };
 
 ConservatorFramework::ConservatorFramework(string connectString) {
@@ -35,9 +46,13 @@ ConservatorFramework::ConservatorFramework(string connectString, int timeout, cl
 }
 
 void ConservatorFramework::start() {
-    //TODO - add some blocking until zoo_state == CONNECTED and throw exception if not connected within timeout
+    unique_lock<std::mutex> connectLock(connectMutex);
     this->zk = zookeeper_init(connectString.c_str(), watcher, timeout, cid, 0, 0);
+    while(!connected) {
+        connectCondition.wait(connectLock);
+    }
     started = true;
+    connectLock.unlock();
 }
 
 void ConservatorFramework::close() {
