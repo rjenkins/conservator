@@ -4,19 +4,19 @@
 
 #include "ConservatorFrameworkFactory.h"
 
-ConservatorFramework ConservatorFrameworkFactory::newClient(string connectString) {
-    return ConservatorFramework(connectString);
+unique_ptr<ConservatorFramework> ConservatorFrameworkFactory::newClient(string connectString) {
+    return unique_ptr<ConservatorFramework>(new ConservatorFramework(connectString));
 }
-ConservatorFramework ConservatorFrameworkFactory::newClient(string connectString, int timeout) {
-    return ConservatorFramework(connectString, timeout);
+unique_ptr<ConservatorFramework> ConservatorFrameworkFactory::newClient(string connectString, int timeout) {
+    return unique_ptr<ConservatorFramework>(new ConservatorFramework(connectString, timeout));
 }
-ConservatorFramework ConservatorFrameworkFactory::newClient(string connectString, int timeout, clientid_t *cid) {
-    return ConservatorFramework(connectString, timeout, cid);
+unique_ptr<ConservatorFramework> ConservatorFrameworkFactory::newClient(string connectString, int timeout, clientid_t *cid) {
+    return unique_ptr<ConservatorFramework>(new ConservatorFramework(connectString, timeout, cid));
 }
 
-ConservatorFramework ConservatorFrameworkFactory::newClient(string connectString, int timeout, clientid_t *cid,
+unique_ptr<ConservatorFramework> ConservatorFrameworkFactory::newClient(string connectString, int timeout, clientid_t *cid,
                                                             int znode_size) {
-    return ConservatorFramework(connectString, timeout, cid, znode_size);
+    return unique_ptr<ConservatorFramework>(new ConservatorFramework(connectString, timeout, cid, znode_size));
 }
 
 
