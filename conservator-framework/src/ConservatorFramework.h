@@ -9,6 +9,8 @@
 #include <zookeeper.h>
 #include <memory>
 #include <vector>
+#include <mutex>
+#include <condition_variable>
 #include "GetDataBuilder.h"
 #include "GetDataBuilderImpl.h"
 #include "ExistsBuilder.h"
@@ -56,6 +58,13 @@ private:
     int timeout = 100000;
     clientid_t *cid = 0;
     int znode_size = 1024 * 1024; // default znode is 1MB
+
+    bool connected = false;
+    mutex connectMutex;
+    condition_variable connectCondition;
+
+    friend void watcher(zhandle_t *zzh, int type, int state, const char *path,
+                 void *watcherCtx);
 };
 
 #endif //CONSERVATOR_CONVERATORFRAMEWORK_H

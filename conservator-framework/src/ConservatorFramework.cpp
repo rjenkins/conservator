@@ -10,6 +10,14 @@
 
 void watcher(zhandle_t *zzh, int type, int state, const char *path,
              void *watcherCtx) {
+
+    ConservatorFramework* framework = (ConservatorFramework *) watcherCtx;
+    if(state == ZOO_CONNECTED_STATE) {
+        unique_lock<std::mutex> connectLock(framework->connectMutex);
+        framework->connected = true;
+        framework->connectCondition.notify_all();
+        connectLock.unlock();
+    }
 };
 
 ConservatorFramework::ConservatorFramework(string connectString) {
@@ -35,8 +43,14 @@ ConservatorFramework::ConservatorFramework(string connectString, int timeout, cl
 }
 
 void ConservatorFramework::start() {
-    //TODO - add some blocking until zoo_state == CONNECTED and throw exception if not connected within timeout
-    this->zk = zookeeper_init(connectString.c_str(), watcher, timeout, cid, 0, 0);
+    this->zk = zookeeper_init(connectString.c_str(), watcher, timeout, cid, (void *) this, 0);
+
+    unique_lock<std::mutex> connectLock(connectMutex);
+    while(!connected) {
+        if(connectCondition.wait_for(connectLock, chrono::seconds(15)) == cv_status::timeout) {
+            throw "timed out waiting to connect to zookeeper";
+        }
+    }
     started = true;
 }
 
