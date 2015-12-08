@@ -45,12 +45,11 @@ ConservatorFramework::ConservatorFramework(string connectString, int timeout, cl
 void ConservatorFramework::start() {
     this->zk = zookeeper_init(connectString.c_str(), watcher, timeout, cid, (void *) this, 0);
 
+    unique_lock<std::mutex> connectLock(connectMutex);
     while(!connected) {
-        unique_lock<std::mutex> connectLock(connectMutex);
         if(connectCondition.wait_for(connectLock, chrono::seconds(15)) == cv_status::timeout) {
             throw "timed out waiting to connect to zookeeper";
         }
-        connectLock.unlock();
     }
     started = true;
 }
