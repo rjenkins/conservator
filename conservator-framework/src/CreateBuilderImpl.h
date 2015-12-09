@@ -15,7 +15,7 @@ using namespace std;
 
 class CreateBuilderImpl : public CreateBuilder<int> {
 public:
-    virtual ~CreateBuilderImpl() { cout << "~CreateBuilderImpl" << endl;}
+    virtual ~CreateBuilderImpl() { }
     CreateBuilderImpl(zhandle_t *zk);
     PathableAndWriteable<int>* withFlags(int flags);
     int forPath(string path);

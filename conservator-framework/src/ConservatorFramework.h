@@ -29,7 +29,7 @@ using namespace std;
 class ConservatorFramework {
 
 public:
-    ~ConservatorFramework() { cout << "~ConservatorFramework" << endl;}
+    ~ConservatorFramework() { }
     ConservatorFramework(string connectString);
     ConservatorFramework(string connectString, int timeout);
     ConservatorFramework(string connectString, int timeout, clientid_t *cid);

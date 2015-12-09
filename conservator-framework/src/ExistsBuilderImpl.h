@@ -11,7 +11,7 @@
 
 class ExistsBuilderImpl : public ExistsBuilder<int> {
 public:
-    virtual ~ExistsBuilderImpl() { cout << "~ExistsBuilderImpl" << endl;}
+    virtual ~ExistsBuilderImpl() { }
     ExistsBuilderImpl(zhandle_t *zk);
     Pathable<int>* withWatcher(watcher_fn watcherFn, void * watcherCtx);
     ZOOAPI int forPath(string path);
