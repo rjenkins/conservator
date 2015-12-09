@@ -14,7 +14,7 @@ public:
     virtual ~CreateBuilder() {};
     virtual PathableAndWriteable<T> *withFlags(int flags) = 0;
     virtual T forPath(string path) = 0;
-    virtual T forPath(string path, char *data) = 0;
+    virtual T forPath(string path, const char *data) = 0;
 };
 #endif //CONSERVATOR_CREATEBUILDER_H
 

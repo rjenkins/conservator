@@ -19,7 +19,7 @@ public:
     CreateBuilderImpl(zhandle_t *zk);
     PathableAndWriteable<int>* withFlags(int flags);
     int forPath(string path);
-    int forPath(string path, char *data);
+    int forPath(string path, const char *data);
 private:
     zhandle_t *zk;
     int flags = 0;

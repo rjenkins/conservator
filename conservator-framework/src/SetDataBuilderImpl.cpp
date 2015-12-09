@@ -13,12 +13,12 @@ ZOOAPI int SetDataBuilderImpl::forPath(string path) {
     return zoo_set(zk, path.c_str(), buffer, 0, version);
 }
 
-ZOOAPI int SetDataBuilderImpl::forPath(string path, char *data) {
+ZOOAPI int SetDataBuilderImpl::forPath(string path, const char *data) {
    int length;
     if(data == NULL) {
         length = -1;
     } else {
-        length = char_traits<char>::length(data);
+        length = char_traits<const char>::length(data);
     }
     return zoo_set(zk, path.c_str(), data, length, version);
 }

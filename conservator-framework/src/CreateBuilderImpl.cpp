@@ -19,13 +19,13 @@ PathableAndWriteable<int> *CreateBuilderImpl::withFlags(int flags) {
 
 }
 
-int CreateBuilderImpl::forPath(string path, char *data) {
+int CreateBuilderImpl::forPath(string path, const char *data) {
     char buffer[512];
     int length;
     if (data == NULL) {
         length = -1;
     } else {
-        length = char_traits<char>::length(data);
+        length = char_traits<const char>::length(data);
     }
     return zoo_create(this->zk, path.c_str(), data, length, &ZOO_OPEN_ACL_UNSAFE, flags, buffer, sizeof(buffer) - 1);
 }
