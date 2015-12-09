@@ -18,7 +18,7 @@ class SetDataBuilder : PathableAndWriteable<int>, public Versionable<int> {
 public:
     virtual ~SetDataBuilder() {};
     virtual T forPath(string path) = 0;
-    virtual T forPath(string path, char *data) = 0;
+    virtual T forPath(string path, const char *data) = 0;
     virtual PathableAndWriteable<T>* withVersion(int version) = 0;
 };
 #endif //CONSERVATOR_SETDATABUILDER_H
