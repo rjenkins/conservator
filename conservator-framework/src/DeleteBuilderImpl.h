@@ -13,7 +13,7 @@ using namespace std;
 
 class DeleteBuilderImpl : public DeleteBuilder<int> {
 public:
-    virtual ~DeleteBuilderImpl() { cout << "~DeleteBuilderImpl" << endl; }
+    virtual ~DeleteBuilderImpl() { }
     DeleteBuilderImpl(zhandle_t *zk);
     Pathable<int>* deletingChildren();
     int forPath(string path);

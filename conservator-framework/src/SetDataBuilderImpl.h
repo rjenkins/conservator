@@ -14,7 +14,7 @@ using namespace std;
 class SetDataBuilderImpl : public SetDataBuilder<int> {
 
 public:
-    virtual ~SetDataBuilderImpl() { cout << "~SetDataBuilderImpl" << endl; }
+    virtual ~SetDataBuilderImpl() { }
     SetDataBuilderImpl(zhandle_t *zk);
     ZOOAPI int forPath(string path);
     ZOOAPI int forPath(string path, char *data);

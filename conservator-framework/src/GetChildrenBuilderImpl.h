@@ -18,7 +18,7 @@ using std::vector;
 
 class GetChildrenBuilderImpl : public GetChildrenBuilder<string> {
 public:
-    virtual ~GetChildrenBuilderImpl() { cout << "~GetChildrenBuilderImpl" << endl; }
+    virtual ~GetChildrenBuilderImpl() { }
     GetChildrenBuilderImpl(zhandle_t *zk);
     Pathable<vector<string>> *withWatcher(watcher_fn watcherFn, void *watcherCtx);
     vector<string> forPath(string path);

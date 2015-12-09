@@ -11,7 +11,7 @@
 
 class SetACLBuilderImpl : public SetACLBuilder<int> {
 public:
-    virtual ~SetACLBuilderImpl() { cout << "~SetACLBuilderImpl" << endl; }
+    virtual ~SetACLBuilderImpl() { }
     SetACLBuilderImpl(zhandle_t *zk, ACL_vector *vector);
     Pathable<int>* withVersion(int version);
     int forPath(string path);

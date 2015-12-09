@@ -14,7 +14,7 @@ using namespace std;
 class GetDataBuilderImpl : public GetDataBuilder<string> {
 
 public:
-    virtual ~GetDataBuilderImpl() { cout << "~GetDataBuilderImpl" << endl;}
+    virtual ~GetDataBuilderImpl() { }
     GetDataBuilderImpl(zhandle_t *zk, int znode_size);
     Pathable<string>* withWatcher(watcher_fn watcherFn, void * watcherCtx);
     Pathable<string>* storingStatIn(struct Stat* stat);

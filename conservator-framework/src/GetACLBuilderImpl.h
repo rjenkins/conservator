@@ -11,7 +11,7 @@
 class GetACLBuilderImpl : public GetACLBuilder<int> {
 
 public:
-    virtual ~GetACLBuilderImpl() { cout << "~GetACLBuilderImpl" << endl; }
+    virtual ~GetACLBuilderImpl() { }
     GetACLBuilderImpl(zhandle_t *zk, ACL_vector *vector);
     Pathable<int> *storingStatIn(struct Stat *stat);
     int forPath(string path);
