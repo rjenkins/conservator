@@ -118,5 +118,5 @@ string ConservatorFramework::get(string path, int length) {
     char buff[length];
     struct Stat stat;
     zoo_get(zk, path.c_str(), 0, buff, &length, &stat);
-    return string(buff);
+    return string(buff, length);
 }

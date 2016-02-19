@@ -41,6 +41,6 @@ string GetDataBuilderImpl::forPath(string path, int length) {
     if (length == -1) {
         return string();
     } else {
-        return string(buff);
+        return string(buff, length);
     }
 }
