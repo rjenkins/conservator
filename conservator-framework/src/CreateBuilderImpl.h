@@ -20,6 +20,7 @@ public:
     PathableAndWriteable<int>* withFlags(int flags);
     int forPath(string path);
     int forPath(string path, const char *data);
+    int forPath(string path, const char *data, string& result_path);
 private:
     zhandle_t *zk;
     int flags = 0;

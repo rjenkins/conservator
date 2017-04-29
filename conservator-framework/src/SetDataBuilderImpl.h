@@ -18,6 +18,7 @@ public:
     SetDataBuilderImpl(zhandle_t *zk);
     ZOOAPI int forPath(string path);
     ZOOAPI int forPath(string path, const char *data);
+    ZOOAPI int forPath(string path, const char *data, string&);
     PathableAndWriteable<int>* withVersion(int version);
 private:
     zhandle_t *zk = NULL;

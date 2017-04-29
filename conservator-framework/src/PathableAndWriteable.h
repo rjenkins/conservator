@@ -14,6 +14,7 @@ class PathableAndWriteable {
 public:
     virtual T forPath(string path) = 0;
     virtual T forPath(string path, const char *data) = 0;
+    virtual T forPath(string path, const char *data, string& result_path) = 0;
 };
 
 
