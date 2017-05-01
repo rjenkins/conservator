@@ -13,18 +13,14 @@ vector<string> GetChildrenBuilderImpl::forPath(string path) {
     if(watcherFn == NULL) {
         zoo_get_children(zk, path.c_str(), -1, &strings);
     } else {
-        printf("Getting children with watch\n");
         zoo_wget_children(zk, path.c_str(), watcherFn, watcherCtx, &strings);
-        printf("Getting children with watch complete\n");
     }
     vector<string> results = vector<string>();
-    printf("strings is %p\n", &strings);
-    printf("strings.count is %d\n", strings.count);
+
     for(int i=0; i<strings.count; i++) {
         results.push_back(string(strings.data[i]));
     }
 
-    printf("returning results of %p\n", &results);
     return results;
 }
 
