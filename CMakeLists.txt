@@ -41,8 +41,6 @@ add_library(conservator-framework SHARED
   conservator-framework/src/SetACLBuilderImpl.cpp
   conservator-framework/src/SetACLBuilderImpl.h
   conservator-framework/src/Flagable.h)
-  
-target_link_libraries(conservator-framework zookeeper_mt)
 
 add_subdirectory(conservator-framework/tests)
 
