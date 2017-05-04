@@ -51,6 +51,8 @@ public:
 
     string get(string path);
     string get(string path, int length);
+
+    zhandle_t* handle() { return zk; }
 private:
     zhandle_t *zk;
     string connectString;
